@@ -6,5 +6,5 @@ const options = { path: '/socket.io' }
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: SocketIO('http://192.168.1.16:1337', options)
+  connection: SocketIO('https://my-kahoot.herokuapp.com', options)
 }))
