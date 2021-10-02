@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/my-kyhoot/',
   pluginOptions: {
     i18n: {
       locale: 'fr',
