@@ -1,0 +1,41 @@
+.tags-list {
+  position: relative;
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .tag {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+    font-weight: 600;
+    background-color: $neutral-light-absolute;
+    box-shadow: $box-shadow-medium;
+    color: $neutral-darkest;
+    border-radius: 15px;
+    padding: 10px 0;
+  }
+
+  .tag-text {
+    position: absolute;
+    left: 15px;
+  }
+
+  .tag-remove {
+    position: absolute;
+    right: 15px;
+    color: $neutral-darkest;
+    font-size: 1rem;
+    line-height: 1;
+
+    &:hover {
+      cursor: pointer;
+      color: $neutral-light;
+    }
+  }
+}

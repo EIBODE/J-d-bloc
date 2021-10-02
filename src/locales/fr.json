@@ -1,0 +1,90 @@
+{
+  "title": {
+    "werewolf": "Loup Garou",
+    "lets-go": "C'est parti !!!",
+    "your-role": "Votre rôle",
+    "role-list": "Rôles restant",
+    "select-your-captain": "Sélectionner votre capitaine",
+    "select-player": "Sélectionner un joueur",
+    "select-victim": "Sélectionner une victime"
+  },
+  "label": {
+    "login": "Connection",
+    "username": "Nom d'utilisateur",
+    "picture": "Avatar",
+    "meeting": "Identifiant de réunion",
+    "submit": "Validez",
+    "create-meeting": "Créer une réunion",
+    "join-meeting": "Rejoindre une réunion",
+    "select": "Sélectionnez",
+    "more-steps": "Nouveaux contenu",
+    "and": " et "
+  },
+  "snackbar": {
+    "an-error-has-occurred": "Une erreur est survenue",
+    "username-not-empty": "Veuillez inscrire le nom d'utilisateur",
+    "picture-not-empty": "Veuillez sélectionner un avatar",
+    "meeting-not-exist": "La réunion n'existe pas",
+    "meeting-not-empty": "Veuillez inscrire l'identifiant de réunion",
+    "delete-player-error": "Vous avez êtes banni de cette réunion",
+    "delete-player-success": "Supression de {player}",
+    "players-size-error": "Le nom de joueurs doit être compris entre 6 et 18"
+  },
+  "modal": {
+    "sure-delete": "Êtes-vous sure de vouloir supprimer"
+  },
+  "game": {
+    "null": "",
+    "installation": "MISE EN PLACE",
+    "select-your-captain": "Sélectionner votre capitaine !",
+    "night-whole-village-falls-asleep-the-players-close-their-eyes": "C'est la nuit tout le village s'endort, les joueurs ferment les yeux",
+    "preparation-round": "TOUR DE PRÉPARATION",
+    "thief-waking-up": "le Voleur se réveille !",
+    "thief-back-sleep": "Le Voleur se rendort",
+    "cupid-awakes": "Cupidon se réveille !",
+    "cupid-back-sleep": "Cupidon se rendort",
+    "lovers-wake-up-recognize-each-other-and-back-sleep": "les Amoureux se réveillent, se reconnaissent, et se rendorment !",
+    "normal-round": "TOUR NORMAL",
+    "clairvoyant-wakes-up-and-select-player-whose-true-personality-she-wants-probe": "la Voyante se réveille, et désigne un joueur dont elle veut sonder la véritable personnalité !",
+    "clairvoyant-back-sleep": "La Voyante se rendort",
+    "werewolves-wake-up-recognize-each-other-and-select-new-victim": "les Loups-Garous se réveillent, se reconnaissent et désignent une nouvelle victime !!!",
+    "werewolves-back-sleep-and-dream-tasty-new-victims": "les Loups-Garous repus se rendorment et rêvent de prochaines victimes savoureuses !",
+    "witch-wakes-up-i-show-the-victim-of-werewolves-will-she-use-healing-potion-or-poisoning-potion": "la Sorcière se réveille, je lui montre la victime des Loups-Garous. Va-t-elle user de sa potion de guérison, ou d'empoisonnement ?",
+    "morning-village-wakes-up-everyone-wakes-up-and-opens-eyes-everyone-except": "c'est le matin, le village se réveille, tout le monde se réveille et ouvre les yeux, tout le monde sauf...",
+    "debate-begins": "LE DÉBAT COMMENCE",
+    "village-votes": "LE VILLAGE VOTE",
+    "you-voted-for-and-he-dead": "vous avez voté pour {player} et il est mort !",
+    "night-survivors-back-sleep": "c'est la nuit, les survivants se rendorment !",
+    "your-captain-is": "Votre capitaine est {player}",
+    "selected-player": "Joueur sélectionné est: {role}",
+    "clairvoyant-select": "La voyante a vue le role d'une personne",
+    "werewolf-select": "Les loups garou ont choisient leurs victimes",
+    "werewolf-dead": "Les loups garous ont tuer {player}",
+    "players-dead": "Résumer de la nuit",
+    "werewolves-show": "Voici vos compatriotes",
+    "village-select": "Le village a choisie",
+    "player-selected": "Les joueurs choisient",
+    "captain-select": "Le choix du capitaine",
+    "players-equality": "Il y a une égalité entre {players}",
+    "change-captain": "Le captaine choisie le nouveau capitaine",
+    "werewolves-win": "Les loups garous ont gagnés",
+    "werewolves-loose": "Les villageois ont gagnés"
+  },
+  "contact": {
+    "leader": "Meneur",
+    "werewolves": "Les loups garous"
+  },
+  "role": {
+      "clairvoyant": "voyante",
+      "cupid": "cupidon",
+      "hunter": "chasseur",
+      "little-girl": "petit fille",
+      "thief": "voleur",
+      "villager": "villageois",
+      "werewolf": "loup garou",
+      "witch": "sorcière"
+  },
+  "result-action": {
+    "werewolf": "Les loups garou ont choisient de tuer:"
+  }
+}

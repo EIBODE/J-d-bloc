@@ -1,0 +1,60 @@
+// Basic text block padding
+$block-padding: 1rem 1.5rem;
+
+// AppVersion
+$version-color: #939393;
+
+// Colors
+$gradient-blue: #0e718e;
+$gradient-yellow: #e2e9b6;
+$dark: #20222e;
+//AppVersion
+$version-color: #939393;
+
+$neutral-dark-absolute: hsl(0, 0%, 0%);
+$neutral-darkest: hsl(0, 0%, 10%);
+$neutral-darker: hsl(0, 0%, 20%);
+$neutral-dark: hsl(0, 0%, 30%);
+$neutral-medium:  hsl(0, 0%, 50%);
+$neutral-light: hsl(0, 0%, 60%);
+$neutral-lighter: hsl(0, 0%, 80%);
+$neutral-lightest: hsl(0, 0%, 90%);
+$neutral-light-absolute: hsl(0, 0%, 100%);
+
+$neutral-light-absolute-opacity: hsla(0, 0%, 100%, 0.4);
+
+$neutral-transparent: hsla(0, 0%, 0%, .5);
+
+$success: darken(hsl(164, 76%, 60%), 15%);
+$success-lighter: rgb(153, 233, 194);
+$success-lightest: rgb(234, 255, 245);
+$error: #ff4757;
+$error-lighter: rgb(255, 128, 139);
+$error-lightest: rgb(255, 234, 236);
+$warning: #ff9f43;
+$warning-lighter: hsla(29, 100%, 63%, 0.2);
+$warning-lightest: rgb(255, 248, 234);
+$warning-alt: #feca57;
+$default: rgb(51, 152, 219);
+$default-light: hsla(204, 70%, 53%, 0.5);
+$default-lighter: hsla(204, 70%, 53%, 0.2);
+$default-lightest: hsla(204, 70%, 53%, 0.05);
+$default-alt: #5352ed;
+$neutral: #999999;
+$disabled: hsla(0, 0%, 88%, 0.2);
+
+$font-stack: 'Avenir', Helvetica, Arial, sans-serif;
+
+$box-shadow-light: 0 4px 8px 0 rgba(0,0,0,0.12),
+0 2px 4px 0 rgba(0,0,0,0.08);
+$box-shadow-medium: 0 4px 20px 0 rgba(0,0,0,0.25),
+0 2px 4px 0 rgba(0,0,0,0.14);
+$box-shadow-heavy: 0 4px 8px 0 rgba(0,0,0,0.30),
+0 2px 4px 0 rgba(0,0,0,0.20);
+
+$box-shadow-default-light: 0 4px 8px 0 rgba(51, 152, 219, 0.12),
+0 2px 4px 0 rgba(51, 152, 219, 0.08);
+$box-shadow-default-medium: 0 4px 20px 0 rgba(51, 152, 219, 0.25),
+0 2px 4px 0 rgba(51, 152, 219, 0.14);
+$box-shadow-default-heavy: 0 4px 8px 0 rgba(51, 152, 219, 0.30),
+0 2px 4px 0 rgba(51, 152, 219, 0.20);
