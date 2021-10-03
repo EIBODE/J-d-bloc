@@ -25,7 +25,8 @@ import {
   faBars,
   faArrowRight,
   faCaretDown,
-  faGem
+  faGem,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -56,5 +57,6 @@ export const fontAwesome = library.add(
   faBars,
   faArrowRight,
   faCaretDown,
-  faGem
+  faGem,
+  faCheck
 )

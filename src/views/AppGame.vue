@@ -1,29 +1,59 @@
 <template>
   <app-main-layout>
-    <!-- <pre>{{JSON.stringify(meeting, null, 2)}}</pre> -->
     <div v-if="iAmAuthor" class="author">
-      <app-button @click="handleNextStep">Suivant</app-button>
-      <div class="author-question">
-        <app-loader :timer="30" />
-        <h2>{{getAnswers.question}}</h2>
-        <img :src="getAnswers.image" class="picture"/>
-        <app-show-owner-response :answers="getAnswers.responses" />
-      </div>
+      <template v-if="step === 'loading'">
+        <div>LOADING...</div>
+      </template>
+      <template v-if="step === 'question'">
+        <app-button @click="handleNextStep">Suivant</app-button>
+        <div class="author-question">
+          <app-loader :timer="30" />
+          <h2>{{getAnswers.question}}</h2>
+          <img :src="getAnswers.image" class="picture"/>
+          <app-show-owner-response :answers="getAnswers.responses"/>
+        </div>
+      </template>
+      <template v-else-if="step === 'stats'">
+        <app-button @click="handleNextStep">Suivant</app-button>
+        <div>
+          <app-show-owner-response :answers="getAnswers.responses"  :response="getAnswers.response" :stats="stats"/>
+        </div>
+      </template>
+      <template v-else-if="step === 'podium'">
+        <div>PODIUM</div>
+      </template>
+      <template v-else>
+        <div>FINAL PODIUM</div>
+      </template>
     </div>
     <div v-else class="no-author">
-      <template v-if="!isScoreShow">
-        <app-loader :timer="30" />
-        <app-show-not-owner-response
-          :answers="getAnswers.responses"
-          @choose="handleClickNotHownerResponse($event)"
-        />
+      <template v-if="step === 'loading'">
+        <div>LOADING...</div>
       </template>
-      <div v-else>
-        <h2 v-if="actualScore.success">BRAVO</h2>
-        <h2 v-else>DOMMAGE</h2>
-
-        <p>Votre score: {{actualScore.score}}</p>
-      </div>
+      <template v-if="step === 'question'">
+        <template v-if="!isScoreShow">
+          <app-loader :timer="30" />
+          <app-show-not-owner-response
+            :answers="getAnswers.responses"
+            @choose="handleClickNotHownerResponse($event)"
+          />
+        </template>
+        <div v-else class="stats">
+          <h2 v-if="actualScore.success" class="success">BRAVO</h2>
+          <h2 v-else class="error">DOMMAGE</h2>
+          <p>Votre score: {{actualScore.score}}</p>
+        </div>
+      </template>
+      <template v-else-if="step === 'stats' || step === 'podium'">
+        <div class="stats">
+          <h2 v-if="actualScore.success" class="success">BRAVO</h2>
+          <h2 v-else class="error">DOMMAGE</h2>
+          <p>Votre score: {{actualScore.score}}</p>
+        </div>
+      </template>
+      <template v-else>
+        <div>FINAL PODIUM</div>
+      </template>
     </div>
   </app-main-layout>
 </template>
@@ -44,14 +74,14 @@ export default {
   },
   data () {
     return {
-      meeting: null,
+      counter: [],
       players: [],
       player: {},
-      steps: [],
+      step: 'question',
+      stats: [],
       questions: [],
       questionsIndex: 0,
       author: null,
-      isScoreShow: false,
       actualScore: {
         score: 0,
         success: true
@@ -77,6 +107,9 @@ export default {
     getAnswers: function () {
       return this.questions && this.questions[this.questionsIndex]
     },
+    isScoreShow: function () {
+      return this.counter.find(p => p === this.token)
+    },
     ...mapGetters({
       ownPlayer: 'player/getPlayer'
     })
@@ -91,9 +124,10 @@ export default {
   },
   sockets: {
     game (meeting) {
-      this.meeting = meeting
       this.players = meeting.players
-      this.steps = meeting.steps
+      this.step = meeting.step
+      this.counter = meeting.counter
+      this.stats = meeting.stats
       this.author = meeting.author
       this.questions = meeting.questions
       this.questionsIndex = meeting.questionsIndex
@@ -108,7 +142,7 @@ export default {
       })
     },
     handleClickNotHownerResponse: function (response) {
-      const lastScore = this.meeting.players.find(p => p._id === this.token).score
+      const lastScore = this.players.find(p => p._id === this.token).score
       const isWin = response === this.getAnswers.response
 
       this.actualScore = {
@@ -142,6 +176,27 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  .stats {
+    font-size: 40;
+    font-weight: bold;
+    color: $neutral-light-absolute;
+    background: $neutral-dark;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    .success {
+      color: $success;
+    }
+    .error {
+      color: $error;
+    }
+  }
 }
 
 .author {
