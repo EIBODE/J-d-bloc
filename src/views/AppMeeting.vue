@@ -9,8 +9,6 @@
         Participant: {{ players.length }}
       </span>
       <br>
-      <!-- // TODO -->
-      <!-- :disabled="!canPlay" -->
       <app-button
         v-if="isContributor"
         :size="'big'"
@@ -133,7 +131,7 @@ export default {
   },
   methods: {
     goToGame: function () {
-      if (this.players.length > 5 && this.players.length < 19) {
+      if (this.players.length >= 1) {
         this.$socket.emit('launchGame', { meetingIdentifier: this.meetingId })
       } else {
         this.$store.dispatch('alert/create', {

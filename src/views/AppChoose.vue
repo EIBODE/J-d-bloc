@@ -3,12 +3,6 @@
     <app-form>
       <div class="form-action">
         <app-button
-          class="select-form-button all-center"
-          :size="'big'"
-          @click="navToLogin()">
-          {{ $t('label.login') }}
-        </app-button>
-        <app-button
           v-if="token"
           class="select-form-button all-center"
           :type="'success'"
@@ -23,6 +17,12 @@
           :size="'big'"
           @click="joinMeeting()">
           {{ $t('label.join-meeting') }}
+        </app-button>
+        <app-button
+          class="select-form-button all-center"
+          :size="'big'"
+          @click="navToLogin()">
+          {{ !token ? $t('label.login') : $t('label.change-user') }}
         </app-button>
       </div>
     </app-form>
@@ -79,16 +79,18 @@ export default {
 }
 
 .form-action {
-  margin: 20px;
+  height: 75vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .select-form-button {
   width: calc(100% - 40px);
+  max-width: 300px;
   display: flex;
   justify-content: center;
   text-align: center;

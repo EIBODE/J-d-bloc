@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: 'https://mentos126.github.io/my-kyhoot/',
+  publicPath: process.env.APP_ENV === 'production' ? 'https://mentos126.github.io/my-kyhoot/' : '/',
   pluginOptions: {
     i18n: {
       locale: 'fr',

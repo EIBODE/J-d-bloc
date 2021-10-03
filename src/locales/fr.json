@@ -1,6 +1,6 @@
 {
   "title": {
-    "werewolf": "Loup Garou",
+    "werewolf": "My Kahoot",
     "lets-go": "C'est parti !!!",
     "your-role": "Votre rôle",
     "role-list": "Rôles restant",
@@ -10,6 +10,7 @@
   },
   "label": {
     "login": "Connection",
+    "change-user": "Changer d'utilisateur",
     "username": "Nom d'utilisateur",
     "picture": "Avatar",
     "meeting": "Identifiant de réunion",
@@ -28,7 +29,7 @@
     "meeting-not-empty": "Veuillez inscrire l'identifiant de réunion",
     "delete-player-error": "Vous avez êtes banni de cette réunion",
     "delete-player-success": "Supression de {player}",
-    "players-size-error": "Le nom de joueurs doit être compris entre 6 et 18"
+    "players-size-error": "Le nombre de joueurs doit être supérieur ou égal à 1"
   },
   "modal": {
     "sure-delete": "Êtes-vous sure de vouloir supprimer"

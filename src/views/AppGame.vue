@@ -1,44 +1,19 @@
 <template>
-  <app-game-layout>
-    <template #left>
-      <app-game-left-menu
-        :players="players"
-        :captain="captain"/>
-    </template>
-    <template #right>
-      <app-game-stats
-        v-if="player && players"
-        :players="players"/>
-      <app-game-steps
-      :players="players"
-      :messages="messages"
-      :captain="captain"
-      @messageAction="getMessageAction($event)"/>
-    </template>
-  </app-game-layout>
+  <app-main-layout>
+    coucou
+  </app-main-layout>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import AppGameLayout from '../components/layout/AppGameLayout'
-import AppGameLeftMenu from '../components/modules/AppGameLeftMenu'
-import AppGameStats from '../components/modules/AppGameStats'
-import AppGameSteps from '../components/modules/AppGameSteps'
 
 export default {
   name: 'AppGame',
-  components: {
-    AppGameLayout,
-    AppGameLeftMenu,
-    AppGameStats,
-    AppGameSteps
-  },
   data () {
     return {
       players: [],
       player: {},
-      messages: [],
-      captain: ''
+      messages: []
     }
   },
   computed: {
@@ -87,6 +62,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>
