@@ -61,7 +61,8 @@ export default {
     this.interval = setInterval(() => {
       this.time = this.time + 1
 
-      if (this.time > this.timer) {
+      if (this.time >= this.timer) {
+        this.$emit('endTime')
         clearInterval(this.interval)
       }
     }, 1000)

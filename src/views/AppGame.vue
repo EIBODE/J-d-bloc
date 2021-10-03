@@ -4,10 +4,10 @@
       <template v-if="step === 'loading'">
         <div>LOADING...</div>
       </template>
-      <template v-if="step === 'question'">
+      <template v-else-if="step === 'question'">
         <app-button @click="handleNextStep">Suivant</app-button>
         <div class="author-question">
-          <app-loader :timer="30" />
+          <app-loader :timer="30" @endTime="handleNextStep" />
           <h2>{{getAnswers.question}}</h2>
           <img :src="getAnswers.image" class="picture"/>
           <app-show-owner-response :answers="getAnswers.responses"/>
@@ -15,12 +15,15 @@
       </template>
       <template v-else-if="step === 'stats'">
         <app-button @click="handleNextStep">Suivant</app-button>
-        <div>
-          <app-show-owner-response :answers="getAnswers.responses"  :response="getAnswers.response" :stats="stats"/>
-        </div>
+        <app-show-owner-response :answers="getAnswers.responses"  :response="getAnswers.response" :stats="stats"/>
       </template>
       <template v-else-if="step === 'podium'">
-        <div>PODIUM</div>
+        <app-button @click="handleNextStep">Suivant</app-button>
+        <app-game-podium :players="players"/>
+      </template>
+      <template v-else-if="step === 'dice'">
+        <app-button @click="handleNextStep">Suivant</app-button>
+        <app-game-dice :category="getAnswers.category"/>
       </template>
       <template v-else>
         <div>FINAL PODIUM</div>
@@ -30,7 +33,7 @@
       <template v-if="step === 'loading'">
         <div>LOADING...</div>
       </template>
-      <template v-if="step === 'question'">
+      <template v-else-if="step === 'question'">
         <template v-if="!isScoreShow">
           <app-loader :timer="30" />
           <app-show-not-owner-response
@@ -39,12 +42,13 @@
           />
         </template>
         <div v-else class="stats">
-          <h2 v-if="actualScore.success" class="success">BRAVO</h2>
+          <h2 v-if="actualScore.success === null"></h2>
+          <h2 v-else-if="actualScore.success" class="success">BRAVO</h2>
           <h2 v-else class="error">DOMMAGE</h2>
           <p>Votre score: {{actualScore.score}}</p>
         </div>
       </template>
-      <template v-else-if="step === 'stats' || step === 'podium'">
+      <template v-else-if="step === 'stats' || step === 'dice' || step === 'podium'">
         <div class="stats">
           <h2 v-if="actualScore.success" class="success">BRAVO</h2>
           <h2 v-else class="error">DOMMAGE</h2>
@@ -64,12 +68,16 @@ import { mapGetters } from 'vuex'
 import AppLoader from '../components/ui/AppLoader.vue'
 import AppShowNotOwnerResponse from '../components/modules/AppShowNotOwnerResponse.vue'
 import AppShowOwnerResponse from '../components/modules/AppShowOwnerResponse.vue'
+import AppGamePodium from '../components/modules/AppGamePodium.vue'
+import AppGameDice from '../components/modules/AppGameDice.vue'
 
 export default {
   name: 'AppGame',
   components: {
     AppShowNotOwnerResponse,
     AppShowOwnerResponse,
+    AppGamePodium,
+    AppGameDice,
     AppLoader
   },
   data () {
@@ -84,7 +92,7 @@ export default {
       author: null,
       actualScore: {
         score: 0,
-        success: true
+        success: null
       }
     }
   },
