@@ -70,7 +70,7 @@ export default {
     getPercentByKey: function (key) {
       const size = this.getSizeByKey(key)
 
-      return size === 0 ? 0 : (100 * size / this.stats.length) * 3
+      return size === 0 ? 0 : (100 * size / this.stats.length) * 2
     }
   }
 }
