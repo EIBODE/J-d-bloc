@@ -97,7 +97,7 @@ export default {
   width: 100px;
   height: 100px;
   perspective: 1000px;
-  margin: 20% auto 0;
+  margin: 100px auto 0;
 
   .cube {
     position: relative;
