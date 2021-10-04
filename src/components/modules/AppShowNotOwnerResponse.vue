@@ -3,7 +3,10 @@
     <div
       v-for="(key, index) in answers"
       :key="key"
-      :style="{background: `${symbolsWithColor[index].color}`}"
+      :style="{
+        background: `${symbolsWithColor[index].color}`,
+        marginRight: index % 2 === 0 ? '10px' : '0'
+      }"
       class="response"
       @click="handleClick(key)"
       >
@@ -58,10 +61,6 @@ export default {
     align-items: center;
     font-size: 32px;
     font-weight: bolder;
-
-    &:nth-child(2n) {
-      margin-left: 10px;
-    }
   }
 }
 </style>

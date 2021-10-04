@@ -4,7 +4,7 @@
       to="/"
       class="main-layout-title">
       <div class="title">
-        {{ $t('title.werewolf') }}
+        <img src="/img/JeDeBloc.png" :alt="$t('title.werewolf')" width="250" height="60" />
       </div>
     </router-link>
     <div class="main-layout-container">
@@ -37,14 +37,14 @@ export default {
   .main-layout-container {
     background: $neutral-light-absolute;
     width: calc(100% - 60px);
-    height: calc(100% - 110px);
+    height: calc(100% - 220px);
     padding: 30px;
   }
 
   .main-layout-title {
     font-size: 2rem;
     font-weight: 900;
-    height: 40px;
+    height: 100px;
     display: flex;
     align-items: center;
     padding-left: 50px;
@@ -53,7 +53,8 @@ export default {
     text-decoration: inherit;
 
     .title {
-      padding: 10px;
+      margin-top: 40px;
+      height: 100px;
     }
   }
 }

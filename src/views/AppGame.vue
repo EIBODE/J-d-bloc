@@ -21,17 +21,18 @@
         <app-button @click="handleNextStep">Suivant</app-button>
         <app-game-podium :players="players"/>
       </template>
-      <template v-else-if="step === 'dice'">
+      <template v-else-if="step === 'first-dice' || step === 'dice'">
         <app-button @click="handleNextStep">Suivant</app-button>
         <app-game-dice :category="getAnswers.category"/>
       </template>
       <template v-else>
-        <div>FINAL PODIUM</div>
+        <app-button type="error" @click="handleClose">Close</app-button>
+        <app-game-podium :players="players"/>
       </template>
     </div>
     <div v-else class="no-author">
-      <template v-if="step === 'loading'">
-        <div>LOADING...</div>
+      <template v-if="step === 'loading' || step === 'first-dice'">
+        <div class="stats">LOADING...</div>
       </template>
       <template v-else-if="step === 'question'">
         <template v-if="!isScoreShow">
@@ -52,11 +53,13 @@
         <div class="stats">
           <h2 v-if="actualScore.success" class="success">BRAVO</h2>
           <h2 v-else class="error">DOMMAGE</h2>
-          <p>Votre score: {{actualScore.score}}</p>
+          <p>{{getStatsMessage}}</p>
+          <p>Votre score: {{gamePlayer.score}}</p>
         </div>
       </template>
       <template v-else>
-        <div>FINAL PODIUM</div>
+        <app-button type="error" :style="{margin: '0 0 0 auto'}" @click="handleClose">Close</app-button>
+        <app-game-podium :players="players"/>
       </template>
     </div>
   </app-main-layout>
@@ -82,6 +85,7 @@ export default {
   },
   data () {
     return {
+      identifier: 0,
       counter: [],
       players: [],
       player: {},
@@ -93,6 +97,20 @@ export default {
       actualScore: {
         score: 0,
         success: null
+      },
+      mesages: {
+        success: [
+          'Trop fort',
+          'Continue comme ça',
+          'Bonne réponse',
+          "C'est qui le meilleur ?"
+        ],
+        error: [
+          'Allez relache pas',
+          'Tu peux réussir',
+          'Désespère pas',
+          'Aïe...'
+        ]
       }
     }
   },
@@ -118,6 +136,17 @@ export default {
     isScoreShow: function () {
       return this.counter.find(p => p === this.token)
     },
+    getStatsMessage: function () {
+      if (this.actualScore.success === null) {
+        return ''
+      }
+
+      const isSuccess = this.actualScore.success
+      const arr = this.mesages[isSuccess ? 'success' : 'error']
+      const randomIndex = Math.floor(Math.random() * arr.length)
+
+      return arr[randomIndex]
+    },
     ...mapGetters({
       ownPlayer: 'player/getPlayer'
     })
@@ -132,6 +161,7 @@ export default {
   },
   sockets: {
     game (meeting) {
+      this.identifier = meeting.identifier
       this.players = meeting.players
       this.step = meeting.step
       this.counter = meeting.counter
@@ -142,15 +172,8 @@ export default {
     }
   },
   methods: {
-    getMessageAction: function ({ players, action }) {
-      this.$socket.emit(action, {
-        token: this.token,
-        meetingIdentifier: this.meetingId,
-        players
-      })
-    },
     handleClickNotHownerResponse: function (response) {
-      const lastScore = this.players.find(p => p._id === this.token).score
+      const lastScore = this.gamePlayer.score
       const isWin = response === this.getAnswers.response
 
       this.actualScore = {
@@ -171,6 +194,9 @@ export default {
         token: this.token,
         meetingIdentifier: this.meetingId
       })
+    },
+    handleClose: function () {
+      this.$router.push({ name: 'choose' })
     }
   }
 }
@@ -179,7 +205,7 @@ export default {
 <style lang="scss" scoped>
 .no-author {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 170px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

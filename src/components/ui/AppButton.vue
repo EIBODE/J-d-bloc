@@ -126,13 +126,13 @@ export default {
   &.medium {
     height: 35px;
     font-size: 1rem;
-    padding: 0 60px;
+    padding: 30px 60px;
   }
 
   &.big {
     height: 60px;
     font-size: 1.1rem;
-    padding: 0 40px;
+    padding: 10px 40px;
   }
 
   &.default {

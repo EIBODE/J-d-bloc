@@ -22,6 +22,7 @@
       v-for="(key, index) in answers"
       :key="key"
       :style="{
+        marginRight: index % 2 === 0 ? '10px' : '0',
         background: `${symbolsWithColor[index].color}`,
         opacity: response === '' ? 1 : key === response ? 1 : 0.3
       }"
@@ -132,10 +133,6 @@ export default {
     height: 20vh;
     font-size: 32px;
     font-weight: bolder;
-
-    &:nth-child(2n) {
-      margin-left: 10px;
-    }
 
     .left {
       margin-left: 10px
