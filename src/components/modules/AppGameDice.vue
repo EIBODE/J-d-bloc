@@ -2,12 +2,12 @@
   <div class="AppGameDice">
     <div class="app-loader">
       <div ref="cube" class="cube">
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/4.svg')`}"></div>
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/3.svg')`}"></div>
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/6.svg')`}"></div>
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/1.svg')`}"></div>
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/2.svg')`}"></div>
-        <div :style="{backgroundImage: `url('${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/dice/5.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/4.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/3.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/6.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/1.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/2.svg')`}"></div>
+        <div :style="{backgroundImage: `url('${process === 'production' ? '/my-kyhoot' : ''}/img/dice/5.svg')`}"></div>
       </div>
     </div>
     <template v-if="selectedSide">
@@ -68,6 +68,11 @@ export default {
           y: 0
         }
       ]
+    }
+  },
+  computed: {
+    process: function () {
+      return process.env.NODE_ENV
     }
   },
   mounted () {

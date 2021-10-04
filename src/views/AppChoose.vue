@@ -26,6 +26,9 @@
         </app-button>
       </div>
     </app-form>
+    <div class="powered">
+      Powered by <a target="_blank" href="https://www.linkedin.com/in/henrique-dos-santos-martins/">Henrique</a>
+    </div>
   </app-main-layout>
 </template>
 
@@ -95,5 +98,16 @@ export default {
   justify-content: center;
   text-align: center;
   margin: 15px;
+}
+
+.powered {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+
+  a {
+    color: $neutral-darkest;
+  }
 }
 </style>
