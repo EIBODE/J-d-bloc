@@ -7,18 +7,6 @@ const state = {
 const getters = {
   getPlayer: function (state) {
     return state.player
-  },
-  getRoles: function () {
-    return {
-      CLAIRVOYANT: 'clairvoyant',
-      CUPID: 'cupid',
-      HUNTER: 'hunter',
-      LITTLE_GIRL: 'little-girl',
-      THIEF: 'thief',
-      VILLAGER: 'villager',
-      WEREWOLF: 'werewolf',
-      WITCH: 'witch'
-    }
   }
 }
 
