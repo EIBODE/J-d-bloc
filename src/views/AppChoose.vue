@@ -27,7 +27,7 @@
       </div>
     </app-form>
     <div class="powered">
-      Powered by <a target="_blank" href="https://www.linkedin.com/in/henrique-dos-santos-martins/">Henrique</a>
+      Created by <a target="_blank" href="https://www.linkedin.com/in/henrique-dos-santos-martins/">Henrique</a>
     </div>
   </app-main-layout>
 </template>
