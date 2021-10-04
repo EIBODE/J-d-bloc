@@ -4,7 +4,7 @@
       to="/"
       class="main-layout-title">
       <div class="title">
-        <img src="/img/JeDeBloc.png" :alt="$t('title.werewolf')" width="250" height="60" />
+        <img :src="`${process.env.NODE_ENV === 'production' ? '/my-kyhoot' : ''}/img/JeDeBloc.png`" :alt="$t('title.werewolf')" width="250" height="60" />
       </div>
     </router-link>
     <div class="main-layout-container">
