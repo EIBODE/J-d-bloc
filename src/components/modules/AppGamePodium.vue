@@ -51,7 +51,8 @@ export default {
   align-items: center;
   margin-top: 40px;
   width: calc(100% - 40px);
-  height: calc(100vh - 300px);
+  height: calc(100vh - 340px);
+  margin-bottom: 30px;
   background: $neutral-dark;
   padding: 20px;
   border-radius: 15px;

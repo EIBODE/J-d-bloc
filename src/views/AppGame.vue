@@ -1,21 +1,28 @@
 <template>
   <app-main-layout>
+    <div class="index">
+      {{questionsIndex + 1}}/{{questions.length}}
+    </div>
     <div v-if="iAmAuthor" class="author">
       <template v-if="step === 'loading'">
-        <div>LOADING...</div>
+        <div class="author-loading">CHARGEMENT...</div>
       </template>
       <template v-else-if="step === 'question'">
         <app-button @click="handleNextStep">Suivant</app-button>
         <div class="author-question">
-          <app-loader :timer="30" @endTime="handleNextStep" />
+          <app-loader :timer="30" :time-to-go="timeToGo" @endTime="handleNextStep" />
           <h2>{{getAnswers.question}}</h2>
           <img :src="getAnswers.image" class="picture"/>
-          <app-show-owner-response :answers="getAnswers.responses"/>
+          <template v-if="getAnswers">
+            <app-show-owner-response :answers="getAnswers.responses"/>
+          </template>
         </div>
       </template>
       <template v-else-if="step === 'stats'">
         <app-button @click="handleNextStep">Suivant</app-button>
-        <app-show-owner-response :answers="getAnswers.responses"  :response="getAnswers.response" :stats="stats"/>
+        <template v-if="getAnswers">
+          <app-show-owner-response :answers="getAnswers.responses"  :response="getAnswers.response" :stats="stats"/>
+        </template>
       </template>
       <template v-else-if="step === 'podium'">
         <app-button @click="handleNextStep">Suivant</app-button>
@@ -32,20 +39,23 @@
     </div>
     <div v-else class="no-author">
       <template v-if="step === 'loading' || step === 'first-dice'">
-        <div class="stats">LOADING...</div>
+        <div class="stats">CHARGEMENT...</div>
       </template>
       <template v-else-if="step === 'question'">
         <template v-if="!isScoreShow">
-          <app-loader :timer="30" />
-          <app-show-not-owner-response
-            :answers="getAnswers.responses"
-            @choose="handleClickNotHownerResponse($event)"
-          />
+          <app-loader :timer="30" :time-to-go="timeToGo" />
+          <template v-if="getAnswers">
+            <app-show-not-owner-response
+              :answers="getAnswers.responses"
+              @choose="handleClickNotHownerResponse($event)"
+            />
+          </template>
         </template>
         <div v-else class="stats">
           <h2 v-if="actualScore.success === null"></h2>
           <h2 v-else-if="actualScore.success" class="success">BRAVO</h2>
           <h2 v-else class="error">DOMMAGE</h2>
+          <p>{{getStatsMessage}}</p>
           <p>Votre score: {{actualScore.score}}</p>
         </div>
       </template>
@@ -85,6 +95,7 @@ export default {
   },
   data () {
     return {
+      timeToGo: '',
       identifier: 0,
       counter: [],
       players: [],
@@ -106,9 +117,9 @@ export default {
           "C'est qui le meilleur ?"
         ],
         error: [
-          'Allez relache pas',
-          'Tu peux réussir',
-          'Désespère pas',
+          'Allez relâche pas',
+          'Essaie de gagner la prochaine fois',
+          'Ne désespère pas',
           'Aïe...'
         ]
       }
@@ -154,10 +165,12 @@ export default {
   mounted () {
     this.$socket.emit('joinRoom', this.meetingId)
     this.$store.dispatch('player/getPlayer')
-    this.$socket.emit('gameInit', {
-      token: this.token,
-      meetingIdentifier: this.meetingId
-    })
+    setTimeout(() => {
+      this.$socket.emit('gameInit', {
+        token: this.token,
+        meetingIdentifier: this.meetingId
+      })
+    }, 50)
   },
   sockets: {
     game (meeting) {
@@ -169,6 +182,7 @@ export default {
       this.author = meeting.author
       this.questions = meeting.questions
       this.questionsIndex = meeting.questionsIndex
+      this.timeToGo = meeting.timeToGo
     }
   },
   methods: {
@@ -203,6 +217,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index {
+  font-size: 26px;
+  font-weight: bold;
+}
+
 .no-author {
   width: 100%;
   height: calc(100vh - 170px);
@@ -221,7 +240,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100% - 30px);
     width: 100%;
 
     .success {
@@ -238,6 +257,20 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+
+  .author-loading {
+    font-size: 40;
+    font-weight: bold;
+    color: $neutral-light-absolute;
+    background: $neutral-dark;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 30px);
+    width: 100%;
+  }
 
   .author-question {
     width: 100%;

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="timer - time >= 0" class="AppLoader">
-    <div class="text">{{ timer - time }}</div>
+  <div v-if="time >= 0" class="AppLoader">
+    <div class="text">{{ time }}</div>
     <svg
       id="L3"
       version="1.1"
@@ -49,6 +49,10 @@ export default {
     timer: {
       type: Number,
       required: true
+    },
+    timeToGo: {
+      type: String,
+      required: true
     }
   },
   data () {
@@ -58,14 +62,21 @@ export default {
     }
   },
   mounted () {
+    this.time = this.getDiffInSeconds(this.timeToGo)
     this.interval = setInterval(() => {
-      this.time = this.time + 1
-
-      if (this.time >= this.timer) {
+      this.time = this.getDiffInSeconds(this.timeToGo)
+      if (this.getDiffInSeconds(this.timeToGo) <= 0) {
         this.$emit('endTime')
         clearInterval(this.interval)
       }
     }, 1000)
+  },
+  methods: {
+    getDiffInSeconds: function (endDate) {
+      const now = new Date()
+
+      return Math.trunc((new Date(endDate).getTime() - now.getTime()) / 1000)
+    }
   }
 }
 </script>

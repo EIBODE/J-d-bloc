@@ -48,7 +48,7 @@ export default {
       default: ''
     },
     stats: {
-      type: Object,
+      type: Array,
       required: false,
       default: null
     }
