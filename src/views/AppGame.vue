@@ -33,7 +33,7 @@
         <app-game-dice :category="getAnswers.category"/>
       </template>
       <template v-else>
-        <app-button type="error" @click="handleClose">Close</app-button>
+        <app-button type="error" @click="handleClose">Fermer</app-button>
         <app-game-podium :players="players"/>
       </template>
     </div>
@@ -56,7 +56,7 @@
           <h2 v-else-if="actualScore.success" class="success">BRAVO</h2>
           <h2 v-else class="error">DOMMAGE</h2>
           <p>{{getStatsMessage}}</p>
-          <p>Votre score: {{actualScore.score}}</p>
+          <p v-if="actualScore.score !== null">Votre score: {{actualScore.score}}</p>
         </div>
       </template>
       <template v-else-if="step === 'stats' || step === 'dice' || step === 'podium'">
@@ -68,7 +68,7 @@
         </div>
       </template>
       <template v-else>
-        <app-button type="error" :style="{margin: '0 0 0 auto'}" @click="handleClose">Close</app-button>
+        <app-button type="error" :style="{margin: '0 0 0 auto'}" @click="handleClose">Fermer</app-button>
         <app-game-podium :players="players"/>
       </template>
     </div>
@@ -95,6 +95,7 @@ export default {
   },
   data () {
     return {
+      interval: null,
       timeToGo: '',
       identifier: 0,
       counter: [],
@@ -106,7 +107,7 @@ export default {
       questionsIndex: 0,
       author: null,
       actualScore: {
-        score: 0,
+        score: null,
         success: null
       },
       mesages: {
@@ -165,7 +166,7 @@ export default {
   mounted () {
     this.$socket.emit('joinRoom', this.meetingId)
     this.$store.dispatch('player/getPlayer')
-    setTimeout(() => {
+    this.interval = setInterval(() => {
       this.$socket.emit('gameInit', {
         token: this.token,
         meetingIdentifier: this.meetingId
@@ -183,11 +184,15 @@ export default {
       this.questions = meeting.questions
       this.questionsIndex = meeting.questionsIndex
       this.timeToGo = meeting.timeToGo
+
+      if (meeting.step !== 'loading' || meeting.counter.includes(this.ownPlayer._id)) {
+        clearInterval(this.interval)
+      }
     }
   },
   methods: {
     handleClickNotHownerResponse: function (response) {
-      const lastScore = this.gamePlayer.score
+      const lastScore = this.gamePlayer.score ?? 0
       const isWin = response === this.getAnswers.response
 
       this.actualScore = {
@@ -210,6 +215,7 @@ export default {
       })
     },
     handleClose: function () {
+      this.$socket.emit('leaveRoom', this.identifier)
       this.$router.push({ name: 'choose' })
     }
   }
