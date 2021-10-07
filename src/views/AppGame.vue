@@ -274,7 +274,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 30px);
+    height: calc(100vh - 300px);
     width: 100%;
   }
 
