@@ -9,7 +9,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy-build": "vue-cli-service build --base=./ --assetsDir=./assets",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js --branch gh-pages -m \"Deploy to gh-pages.\" && git add . && git commit -m 'up' && git push origin gh-pages"
+    "deploy": "node ./node_modules/vue-gh-pages/index.js --branch gh-pages -m \"Deploy to gh-pages.\" && git add . && git commit -m 'up' && git push origin main"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
