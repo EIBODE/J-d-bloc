@@ -1,4 +1,4 @@
-# my-werewolf
+# my-kyhoot
 
 ## Project setup
 ```
