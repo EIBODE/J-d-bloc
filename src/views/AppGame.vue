@@ -185,7 +185,7 @@ export default {
       this.questionsIndex = meeting.questionsIndex
       this.timeToGo = meeting.timeToGo
 
-      if (meeting.step !== 'loading' || meeting.counter.includes(this.ownPlayer._id)) {
+      if (meeting.step !== 'loading' || (this.ownPlayer !== null && meeting.counter.includes(this.ownPlayer._id))) {
         clearInterval(this.interval)
       }
     }
