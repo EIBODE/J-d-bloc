@@ -14,8 +14,6 @@ requireModule.keys().forEach(fileName => {
 
 Vue.use(Vuex)
 
-console.log(modules)
-
 const store = new Vuex.Store({
   modules
 })

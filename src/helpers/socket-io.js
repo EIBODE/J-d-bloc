@@ -5,6 +5,6 @@ import VueSocketIO from 'vue-socket.io'
 const options = { path: '/socket.io' }
 
 Vue.use(new VueSocketIO({
-  debug: true,
+  debug: false,
   connection: SocketIO(process.env.NODE_ENV === 'production' ? 'https://my-kahoot.herokuapp.com' : 'http://192.168.1.16:1337', options)
 }))
