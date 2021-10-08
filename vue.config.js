@@ -1,6 +1,6 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? 'https://eibode.github.io/J-d-bloc/' : '/',
-  // publicPath: process.env.NODE_ENV === 'production' ? 'https://mentos126.github.io/my-kyhoot/' : '/',
+  // publicPath: process.env.NODE_ENV === 'production' ? 'https://eibode.github.io/J-d-bloc/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? 'https://mentos126.github.io/my-kyhoot/' : '/',
   pluginOptions: {
     i18n: {
       locale: 'fr',
