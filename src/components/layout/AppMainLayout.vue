@@ -4,7 +4,7 @@
       to="/"
       class="main-layout-title">
       <div class="title">
-        <img :src="`${process === 'production' ? '/my-kyhoot' : ''}/img/JeDeBloc.png`" :alt="$t('title.werewolf')" width="250" height="60" />
+        <img :src="`${getPath}img/JeDeBloc.png`" :alt="$t('title.werewolf')" width="250" height="60" />
       </div>
     </router-link>
     <div class="main-layout-container">
@@ -25,8 +25,8 @@ export default {
     isLoading: function () {
       return this.$store.getters['loader/isLoading']
     },
-    process: function () {
-      return process.env.NODE_ENV
+    getPath: function () {
+      return location.origin + location.pathname
     }
   }
 }
