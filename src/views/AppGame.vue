@@ -166,12 +166,12 @@ export default {
   mounted () {
     this.$socket.emit('joinRoom', this.meetingId)
     this.$store.dispatch('player/getPlayer')
-    this.interval = setInterval(() => {
-      this.$socket.emit('gameInit', {
-        token: this.token,
-        meetingIdentifier: this.meetingId
-      })
-    }, 50)
+    // this.interval = setInterval(() => {
+    this.$socket.emit('gameInit', {
+      token: this.token,
+      meetingIdentifier: this.meetingId
+    })
+    // }, 50)
   },
   sockets: {
     game (meeting) {
