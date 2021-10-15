@@ -130,15 +130,16 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 20vh;
-    font-size: 32px;
+    height: 16vh;
+    font-size: 28px;
     font-weight: bolder;
 
     .left {
-      margin-left: 10px
+      margin-left: 30px;
+      margin-right: 30px;
     }
     .right {
-      margin-right: 10px
+      margin-right: 30px;
     }
   }
 }

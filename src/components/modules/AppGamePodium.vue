@@ -3,19 +3,22 @@
     <div class="row">
       <div class="col">
         <template v-if="get3BestScore.length >= 2">
-          {{get3BestScore[1].username|shorten(10)}}
+          <span>{{get3BestScore[1].username|shorten(10)}}</span>
+          <span>({{get3BestScore[1].score}})</span>
         </template>
         <div class="column two">2</div>
       </div>
       <div class="col">
         <template v-if="get3BestScore.length >= 1">
-          {{get3BestScore[0].username|shorten(10)}}
+          <span>{{get3BestScore[0].username|shorten(10)}}</span>
+          <span>({{get3BestScore[0].score}})</span>
         </template>
         <div class="column one">1</div>
       </div>
       <div class="col">
         <template v-if="get3BestScore.length >= 3">
-          {{get3BestScore[2].username|shorten(10)}}
+          <span>{{get3BestScore[2].username|shorten(10)}}</span>
+          <span>({{get3BestScore[2].score}})</span>
         </template>
         <div class="column three">3</div>
       </div>

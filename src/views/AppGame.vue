@@ -8,9 +8,9 @@
         <div class="author-loading">CHARGEMENT...</div>
       </template>
       <template v-else-if="step === 'question'">
-        <app-button @click="handleNextStep">Suivant</app-button>
+        <app-button class="nextStep" @click="handleNextStep">Suivant</app-button>
         <div class="author-question">
-          <app-loader :timer="30" :time-to-go="timeToGo" @endTime="handleNextStep" />
+          <app-loader class="author-loader" :timer="30" :time-to-go="timeToGo" @endTime="handleNextStep" />
           <h2>{{getAnswers.question}}</h2>
           <img :src="getAnswers.image" class="picture"/>
           <template v-if="getAnswers">
@@ -263,6 +263,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+  position: relative;
 
   .author-loading {
     font-size: 40;
@@ -278,14 +279,31 @@ export default {
     width: 100%;
   }
 
+  .nextStep.app-button {
+    position: relative;
+    top: -80px;
+  }
+
   .author-question {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
+    .author-loader {
+      position: absolute;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     h2 {
+      max-width: 1080px;
+      text-align: center;
       padding-bottom: 20px;
     }
 
@@ -293,7 +311,7 @@ export default {
       object-position: center;
       object-fit: contain;
       width: 100%;
-      height: 15vh;
+      height: 36vh;
       padding-bottom: 20px;
     }
   }

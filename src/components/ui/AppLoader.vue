@@ -64,11 +64,11 @@ export default {
   mounted () {
     this.time = this.getDiffInSeconds(this.timeToGo)
     this.interval = setInterval(() => {
-      this.time = this.getDiffInSeconds(this.timeToGo)
-      if (this.getDiffInSeconds(this.timeToGo) <= 0) {
-        this.$emit('endTime')
-        clearInterval(this.interval)
-      }
+      // this.time = this.getDiffInSeconds(this.timeToGo)
+      // if (this.getDiffInSeconds(this.timeToGo) <= 0) {
+      //   this.$emit('endTime')
+      //   clearInterval(this.interval)
+      // }
     }, 1000)
   },
   methods: {
